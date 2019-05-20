@@ -1,0 +1,109 @@
+.dijitButton.calcButton{
+    display: block;
+ }
+.dijitButton.calcButton .dijitButtonNode{
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+}
+
+[widgetid = button-0] {
+    position: absolute;
+    top: 300px;
+    left: 30px;
+}
+[widgetid = button-1] {
+    position: absolute;
+    top: 260px;
+    left: 30px;
+}
+[widgetid = button-2] {
+    position: absolute;
+    top: 260px;
+    left: 75px;
+}
+[widgetid = button-3] {
+    position: absolute;
+    top: 260px;
+    left: 120px;
+}
+[widgetid = button-4] {
+    position: absolute;
+    top: 220px;
+    left: 30px;
+}
+[widgetid = button-5] {
+    position: absolute;
+    top: 220px;
+    left: 75px;
+}
+[widgetid = button-6] {
+    position: absolute;
+    top: 220px;
+    left: 120px;
+}
+[widgetid = button-7] {
+    position: absolute;
+    top: 180px;
+    left: 30px;
+}
+[widgetid = button-8] {
+    position: absolute;
+    top: 180px;
+    left: 75px;
+}
+[widgetid = button-9] {
+    position: absolute;
+    top: 180px;
+    left: 120px;
+}
+[widgetid = plus-btn] {
+    position: absolute;
+    top: 180px;
+    left: 165px;
+}
+[widgetid = minus-btn] {
+    position: absolute;
+    top: 220px;
+    left: 165px;
+}
+[widgetid = times-btn] {
+    position: absolute;
+    top: 260px;
+    left: 165px;
+}
+[widgetid = divide-btn] {
+    position: absolute;
+    top: 300px;
+    left: 165px;
+}
+[widgetid = decimal-btn] {
+    position: absolute;
+    top: 300px;
+    left: 75px;
+}
+[widgetid = equals-btn] {
+    position: absolute;
+    top: 300px;
+    left: 120px;
+}
+[widgetid = left-parenth-btn] {
+    position: absolute;
+    top: 140px;
+    left: 30px;
+}
+[widgetid = right-parenth-btn] {
+    position: absolute;
+    top: 140px;
+    left: 75px;
+}
+[widgetid = backspace-btn] {
+    position: absolute;
+    top: 140px;
+    left: 120px;
+}
+[widgetid = clear-btn] {
+    position: absolute;
+    top: 140px;
+    left: 165px;
+}
