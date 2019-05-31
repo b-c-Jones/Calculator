@@ -9,19 +9,33 @@ require([
     "dojo/query",
     "dojo/domReady!"
 ], function (dom, ready, domConstruct, Button, Dialog, on, keys, query) {
-   
+    
+    _calciteCalculator = function(title, msg, columns) {
+        if (!columns) columns=6;
+        var alertOverlay = domConstruct.create("div", { class: "modal-overlay is-active" }, document.body);
+        var alertContent = domConstruct.create("div", { class: "modal-content column-"+columns, "role":"dialog", "aria-labelledby":"modal" }, alertOverlay);
+        var alertButtons = domConstruct.create("div", { class: "text-right" }, alertContent);
+        domConstruct.create("h5", { class: "trailer-half text-blue", innerHTML: "Calculator" }, alertContent);
+        domConstruct.create("div", { class: "modalDiv" }, alertContent);
+        var okBtn = domConstruct.create("button", { class: "btn btn-small", innerHTML: "X" }, alertButtons);
+        on(okBtn, "click", function() { dojo.destroy(alertOverlay) });
+    };
+    _calciteCalculator("test", "testing");
+    
     calcDialog = new Dialog({
         title: "Calculator",
-        style: `width: 250px; height: 415px`,
+        style: "width: 256px; height: 415px",
+        //class: "modal-content",
         content: `<span id="calcApp"></span>`
     });
 
     on(domConstruct.create("div", { "innerHTML": "Calculator", "class": "btn" }, "calculator"), 'click', function(){
         calcDialog.show();
+        _calciteCalculator("test", "testing");
      });
     
-    domConstruct.create("textarea", { innerHTML: "Problem", rows: "5", readonly: "", id: "input"}, "calcApp");
-    domConstruct.create("textarea", { innerHTML: "Solution", rows: "1", readonly: "", id: "output"}, "calcApp");
+    domConstruct.create("textarea", { innerHTML: "Problem", id: "input", rows: "6", disabled: "" }, "calcApp");
+    domConstruct.create("textarea", { innerHTML: "Solution", id: "output", rows: "1", disabled: "" }, "calcApp");
     var problem = dom.byId("input");
     var solution = dom.byId("output");
     var problemArr = [""];
@@ -248,6 +262,5 @@ require([
         } else {
             problem.innerHTML = "Problem";
         }
-        
     };
 });
