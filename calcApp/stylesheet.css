@@ -1,109 +1,129 @@
-.dijitButton.calcButton{
+#input, #output{
+    resize: none;
+    padding-top: 0px;
+    border-color: #abd6ff;
+    background-color: aliceblue;
+    opacity: 1;
+    top: -15px;
+}
+div#dijit_Dialog_0 {
+    background-color: #c2d4e2;
+}
+.claro .dijitDialogTitleBar{
+    background-color: rgba(0,0,0,0);
+    border: none;
+}
+.claro .dijitDialogPaneContent{
+    background: none;
+    border: none;
+}
+.calcButton {
     display: block;
- }
-.dijitButton.calcButton .dijitButtonNode{
-    width: 30px;
-    height: 30px;
+    background-color: #5e9cc0;
+    border-color: #5e9cc0;
+    width: 59px;
+    height: 44px;
     font-size: 20px;
+    text-align: center;
+    border-radius: 2px;
 }
-
-[widgetid = button-0] {
+#button-0 {
     position: absolute;
-    top: 300px;
-    left: 30px;
+    top: 332px;
+    left: 5px;
 }
-[widgetid = button-1] {
+#button-1 {
     position: absolute;
-    top: 260px;
-    left: 30px;
+    top: 286px;
+    left: 5px;
 }
-[widgetid = button-2] {
+#button-2 {
     position: absolute;
-    top: 260px;
-    left: 75px;
+    top: 286px;
+    left: 67px;
 }
-[widgetid = button-3] {
+#button-3 {
     position: absolute;
-    top: 260px;
-    left: 120px;
+    top: 286px;
+    left: 129px;
 }
-[widgetid = button-4] {
+#button-4 {
     position: absolute;
-    top: 220px;
-    left: 30px;
+    top: 240px;
+    left: 5px;
 }
-[widgetid = button-5] {
+#button-5 {
     position: absolute;
-    top: 220px;
-    left: 75px;
+    top: 240px;
+    left: 67px;
 }
-[widgetid = button-6] {
+#button-6 {
     position: absolute;
-    top: 220px;
-    left: 120px;
+    top: 240px;
+    left: 129px;
 }
-[widgetid = button-7] {
+#button-7 {
     position: absolute;
-    top: 180px;
-    left: 30px;
+    top: 194px;
+    left: 5px;
 }
-[widgetid = button-8] {
+#button-8 {
     position: absolute;
-    top: 180px;
-    left: 75px;
+    top: 194px;
+    left: 67px;
 }
-[widgetid = button-9] {
+#button-9 {
     position: absolute;
-    top: 180px;
-    left: 120px;
+    top: 194px;
+    left: 129px;
 }
-[widgetid = plus-btn] {
+#plus-btn {
     position: absolute;
-    top: 180px;
-    left: 165px;
+    top: 194px;
+    left: 191px;
 }
-[widgetid = minus-btn] {
+#minus-btn {
     position: absolute;
-    top: 220px;
-    left: 165px;
+    top: 240px;
+    left: 191px;
 }
-[widgetid = times-btn] {
+#times-btn {
     position: absolute;
-    top: 260px;
-    left: 165px;
+    top: 286px;
+    left: 191px;
 }
-[widgetid = divide-btn] {
+#divide-btn {
     position: absolute;
-    top: 300px;
-    left: 165px;
+    top: 332px;
+    left: 191px;
 }
-[widgetid = decimal-btn] {
+#decimal-btn {
     position: absolute;
-    top: 300px;
-    left: 75px;
+    top: 332px;
+    left: 67px;
 }
-[widgetid = equals-btn] {
+#equals-btn {
     position: absolute;
-    top: 300px;
-    left: 120px;
+    top: 332px;
+    left: 129px;
 }
-[widgetid = left-parenth-btn] {
+#left-parenth-btn {
     position: absolute;
-    top: 140px;
-    left: 30px;
+    top: 148px;
+    left: 5px;
 }
-[widgetid = right-parenth-btn] {
+#right-parenth-btn {
     position: absolute;
-    top: 140px;
-    left: 75px;
+    top: 148px;
+    left: 67px;
 }
-[widgetid = backspace-btn] {
+#backspace-btn {
     position: absolute;
-    top: 140px;
-    left: 120px;
+    top: 148px;
+    left: 129px;
 }
-[widgetid = clear-btn] {
+#clear-btn {
     position: absolute;
-    top: 140px;
-    left: 165px;
+    top: 148px;
+    left: 191px;
 }
