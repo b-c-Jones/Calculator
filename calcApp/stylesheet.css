@@ -1,116 +1,151 @@
-textarea {
-    resize: none;
-    padding-top: 0.1rem;
-    border-color: #abd6ff;
+#calcApp {
+    position: absolute;
+    height: 430px;
+    width: 273px;
+    background-color: #c2d4e2;
+    border-radius: 5px;
 }
-
-.dijitButton.calcButton{
+#calcAppHeader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 95%;
+    padding: 2.55%;
+    border-bottom: 1px solid #6777a5;
+    cursor: move;
+}
+#closeBtn {
+    position: absolute;
+    top: .75%;
+    right: 1.5%;
+    border-radius: 5px;
+}
+#input, #output {
+    resize: none;
+    padding-top: 0px;
+    border-color: #abd6ff;
+    background-color: aliceblue;
+    opacity: 1;
+}
+#input {
+    position: absolute;
+    top: 42px;
+    left: 1.5%;
+    width: 97%;
+}
+#output {
+    position: absolute;
+    top: 167px;
+    left: 1.5%;
+    width: 97%;
+}
+.calcButtons {
     display: block;
- }
-.calcButton {
-    width: 59px;
+    width: 64px;
     height: 44px;
     font-size: 20px;
     text-align: center;
+    background-color: #5e9cc0;
+    border-color: #5e9cc0;
     border-radius: 2px;
 }
 #button-0 {
     position: absolute;
-    top: 332px;
+    top: 379px;
     left: 5px;
 }
 #button-1 {
     position: absolute;
-    top: 287px;
+    top: 333px;
     left: 5px;
 }
 #button-2 {
     position: absolute;
-    top: 287px;
-    left: 65px;
+    top: 333px;
+    left: 71px;
 }
 #button-3 {
     position: absolute;
-    top: 287px;
-    left: 125px;
+    top: 333px;
+    left: 137px;
 }
 #button-4 {
     position: absolute;
-    top: 242px;
+    top: 287px;
     left: 5px;
 }
 #button-5 {
     position: absolute;
-    top: 242px;
-    left: 65px;
+    top: 287px;
+    left: 71px;
 }
 #button-6 {
     position: absolute;
-    top: 242px;
-    left: 125px;
+    top: 287px;
+    left: 137px;
 }
 #button-7 {
     position: absolute;
-    top: 197px;
+    top: 241px;
     left: 5px;
 }
 #button-8 {
     position: absolute;
-    top: 197px;
-    left: 65px;
+    top: 241px;
+    left: 71px;
 }
 #button-9 {
     position: absolute;
-    top: 197px;
-    left: 125px;
+    top: 241px;
+    left: 137px;
 }
 #plus-btn {
     position: absolute;
-    top: 197px;
-    left: 185px;
+    top: 241px;
+    left: 203px;
 }
 #minus-btn {
     position: absolute;
-    top: 242px;
-    left: 185px;
+    top: 287px;
+    left: 203px;
 }
 #times-btn {
     position: absolute;
-    top: 287px;
-    left: 185px;
+    top: 333px;
+    left: 203px;
 }
 #divide-btn {
     position: absolute;
-    top: 332px;
-    left: 185px;
+    top: 379px;
+    left: 203px;
 }
 #decimal-btn {
     position: absolute;
-    top: 332px;
-    left: 65px;
+    top: 379px;
+    left: 71px;
 }
 #equals-btn {
     position: absolute;
-    top: 332px;
-    left: 125px;
+    top: 379px;
+    left: 137px;
 }
 #left-parenth-btn {
     position: absolute;
-    top: 152px;
+    top: 195px;
     left: 5px;
 }
 #right-parenth-btn {
     position: absolute;
-    top: 152px;
-    left: 65px;
+    top: 195px;
+    left: 71px;
 }
 #backspace-btn {
     position: absolute;
-    top: 152px;
-    left: 125px;
+    top: 195px;
+    left: 137px;
 }
 #clear-btn {
     position: absolute;
-    top: 152px;
-    left: 185px;
+    top: 195px;
+    left: 203px;
 }
