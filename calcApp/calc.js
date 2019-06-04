@@ -9,7 +9,7 @@ require([
         _calciteCalculator();
     });
     // The function that creates the calculator Modal.
-    _calciteCalculator = function () {
+    function _calciteCalculator() {
         var columns = 6;
         var calcOverlay = domConstruct.create("div", { class: "modal-overlay is-active", id: "calcOverlay" }, document.body);
         var calcContent = domConstruct.create("div", { class: "modal-content column-" + columns, "role": "dialog", "aria-labelledby": "modal", id: "calcApp" }, calcOverlay);
