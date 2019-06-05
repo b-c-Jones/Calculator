@@ -4,10 +4,12 @@ require([
     "dojo/on",
     "dojo/domReady!"
 ], function (dom, domConstruct, on) {
+    
     // Create a button. When clicked, a Calcite Modal is created that contains a calculator.
     on(domConstruct.create("div", { "innerHTML": "Calculator", "class": "btn" }, "calculator"), 'click', function () {
         _calciteCalculator();
     });
+    
     // The function that creates the calculator Modal.
     function _calciteCalculator() {
         var columns = 6;
@@ -20,6 +22,7 @@ require([
         dragElement(document.getElementById("calcApp"));
         calcCreate();
     };
+    
     //The dragElement function makes the Calculator Modal draggable:
     function dragElement(elmnt) {
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -55,6 +58,7 @@ require([
             document.onmousemove = null;
         }
     }
+    
     // calcCreate creates the calculator in the (mostly) empty calciteCalculator Modal.
     function calcCreate() {
         domConstruct.create("textarea", { innerHTML: "Problem", id: "input", rows: "6", disabled: "" }, "calcApp");
@@ -110,6 +114,7 @@ require([
         on(domConstruct.create("div", { "innerHTML": "C", "id": "clear-btn", "class": "btn calcButtons" }, "calcApp"), "click", function () {
             clearClick();
         });
+
         // on clicking or typing a number, checks if adding a number is allowed. if so, pushes the clicked/typed number to the end of the input textbox.
         numClick = function (innerHTML) {
             if (problemArr.slice(-1) != ")") {
@@ -124,6 +129,7 @@ require([
                 problem.scrollTop = problem.scrollHeight;
             };
         };
+
         // on clicking or typing the minus symbol, checks if adding a minus is allowed. if so, pushes a minus symbol to the end of the input textbox.
         minusClick = function () {
             if (problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) != " - " &&
@@ -133,6 +139,7 @@ require([
                 problem.scrollTop = problem.scrollHeight;
             };
         };
+
         // on clicking or typing the decimal point, checks if adding a decimal is allowed. if so, pushes a decimal point onto the end of the input textbox.
         decimalClick = function () {
             if (!problemArr[problemArr.length - 1].includes(".") && problemArr.slice(-1) != ")") {
@@ -141,6 +148,7 @@ require([
                 problem.scrollTop = problem.scrollHeight;
             };
         };
+
         // on clicking the equals button, typing equals, or hitting the enter key, evaluates the text in the input textbox and displays the answer in the output textbox.
         equalsClick = function () {
             if (problemArr[0] !== "") {
@@ -156,18 +164,20 @@ require([
                 solution.innerHTML = +answer.toFixed(5);
             };
         };
+
         // on clicking or typing a left parentheses, check if adding a left parenth is allowed. If so, push it onto the end of the input textbox.
         leftParenthClick = function () {
             if (problemArr.slice(-1) == " + " ||
-                problemArr.slice(-1) == " - " ||
-                problemArr.slice(-1) == " * " ||
-                problemArr.slice(-1) == " / " ||
-                problemArr.slice(-1) == "") {
+            problemArr.slice(-1) == " - " ||
+            problemArr.slice(-1) == " * " ||
+            problemArr.slice(-1) == " / " ||
+            problemArr.slice(-1) == "") {
                 problemArr.push("(");
                 problem.innerHTML = problemArr.join("");
                 problem.scrollTop = problem.scrollHeight;
             };
         };
+
         // on clicking or typing a right parentheses, check if adding a right parenth is allowed. If so, push it onto the end of the input textbox.
         rightParenthClick = function () {
             if (difference > 0 && problemArr.join("").slice(-1) != "(" && problemArr.join("").slice(-1) != "." && !checkIfOperator()) {
@@ -176,8 +186,9 @@ require([
                 problem.scrollTop = problem.scrollHeight;
             };
         };
+        
         // on clicking ⌫ or hitting backspace, delete the last character added. if the input textbox is now empty, add placeholder text "Problem".
-        backspaceClick = function () {
+        backspaceClick = function() {
             if (checkIfOperator()) {
                 problemArr = problemArr.slice(0, -1);
             } else {
@@ -189,20 +200,22 @@ require([
                 problem.innerHTML = problemArr.join("");
             };
         };
+        
         // on clicking the "C" button or typing "c", clear the calculator.
         clearClick = function () {
             problemArr = [""];
             problem.innerHTML = "Problem";
             solution.innerHTML = "Solution";
         };
+        
         // on clicking or typing any non minus operator, check if adding that operator is allowed. if so, add it. if not, replace the previous character
         operatorClick = function (innerHTML) {
             if (problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) == " + " ||
-                problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) == " - " ||
-                problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) == " * " ||
-                problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) == " / " ||
-                problemArr.join("").split("").slice(-1) == "(" ||
-                problemArr.join("").split("").slice(-1) == ".") {
+            problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) == " - " ||
+            problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) == " * " ||
+            problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) == " / " ||
+            problemArr.join("").split("").slice(-1) == "(" ||
+            problemArr.join("").split("").slice(-1) == ".") {
                 problemArr = problemArr.slice(0, -1);
                 operatorClick(innerHTML);
             } else if (problemArr[0] === "" || !problemArr.length) {
@@ -214,12 +227,14 @@ require([
                 problem.scrollTop = problem.scrollHeight;
             };
         };
+        
         // check how many more left parentheses there are than right, and return the difference.
         checkParentheses = function () {
             var leftCounter = problemArr.join("").replace(/[^\(]/g, "").length;
             var rightCounter = problemArr.join("").replace(/[^\)]/g, "").length;
             return difference = leftCounter - rightCounter;
         };
+        
         // check if the last character in input is an operator
         checkIfOperator = function () {
             if (problemArr.slice(-1) == " + " ||
@@ -231,7 +246,8 @@ require([
                 return false;
             };
         };
-        // removes trailing parentheses, decimal points, and whitespaces. if input is now empty, add placeholder text "Problem"
+        
+        // removes trailing parentheses, decimal points, and operators. if input is now empty, add placeholder text "Problem"
         evalCheck = function () {
             if (problemArr.join("").split("").slice(-1) == "(" ||
             problemArr.join("").split("").slice(-1) == "." ||
