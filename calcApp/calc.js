@@ -4,12 +4,20 @@ require([
     "dojo/on",
     "dojo/domReady!"
 ], function (dom, domConstruct, on) {
-    
-    // Create a button. When clicked, a Calcite Modal is created that contains a calculator.
+
+    var calcIsActive = false;
+
+    // Create a button. When clicked, a Calcite Modal is created that contains a calculator and calcIsActive is set to true. 
+    //If the calcite Modal already exists, show it instead. 
     on(domConstruct.create("div", { "innerHTML": "Calculator", "class": "btn" }, "calculator"), 'click', function () {
-        _calciteCalculator();
+        if (!document.getElementById("calcOverlay")) {
+            _calciteCalculator();
+        } else {
+            calcOverlay.classList.add("is-active");
+        };
+        calcIsActive = true;
     });
-    
+
     // The function that creates the calculator Modal.
     function _calciteCalculator() {
         var columns = 6;
@@ -17,12 +25,16 @@ require([
         var calcContent = domConstruct.create("div", { class: "modal-content column-" + columns, "role": "dialog", "aria-labelledby": "modal", id: "calcApp" }, calcOverlay);
         domConstruct.create("header", { class: "text-blue", id: "calcAppHeader", innerHTML: "Calculator" }, calcContent);
         var closeBtn = domConstruct.create("button", { class: "btn btn-small", id: "closeBtn", innerHTML: "X" }, calcContent);
-        on(closeBtn, "click", function () { dojo.destroy(calcOverlay) });
+        // When you close the calculator, remove the "is-active" class form calcOverlay and set calcIsActive to false.
+        on(closeBtn, "click", function () {
+            calcOverlay.classList.remove("is-active");
+            calcIsActive = false;
+        });
         // Every time the Modal is created, call the dragElement and calcCreate functions
         dragElement(document.getElementById("calcApp"));
         calcCreate();
     };
-    
+
     //The dragElement function makes the Calculator Modal draggable:
     function dragElement(elmnt) {
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -58,7 +70,7 @@ require([
             document.onmousemove = null;
         }
     }
-    
+
     // calcCreate creates the calculator in the (mostly) empty calciteCalculator Modal.
     function calcCreate() {
         domConstruct.create("textarea", { innerHTML: "Problem", id: "input", rows: "6", disabled: "" }, "calcApp");
@@ -168,10 +180,10 @@ require([
         // on clicking or typing a left parentheses, check if adding a left parenth is allowed. If so, push it onto the end of the input textbox.
         leftParenthClick = function () {
             if (problemArr.slice(-1) == " + " ||
-            problemArr.slice(-1) == " - " ||
-            problemArr.slice(-1) == " * " ||
-            problemArr.slice(-1) == " / " ||
-            problemArr.slice(-1) == "") {
+                problemArr.slice(-1) == " - " ||
+                problemArr.slice(-1) == " * " ||
+                problemArr.slice(-1) == " / " ||
+                problemArr.slice(-1) == "") {
                 problemArr.push("(");
                 problem.innerHTML = problemArr.join("");
                 problem.scrollTop = problem.scrollHeight;
@@ -186,9 +198,9 @@ require([
                 problem.scrollTop = problem.scrollHeight;
             };
         };
-        
+
         // on clicking ⌫ or hitting backspace, delete the last character added. if the input textbox is now empty, add placeholder text "Problem".
-        backspaceClick = function() {
+        backspaceClick = function () {
             if (checkIfOperator()) {
                 problemArr = problemArr.slice(0, -1);
             } else {
@@ -200,22 +212,22 @@ require([
                 problem.innerHTML = problemArr.join("");
             };
         };
-        
+
         // on clicking the "C" button or typing "c", clear the calculator.
         clearClick = function () {
             problemArr = [""];
             problem.innerHTML = "Problem";
             solution.innerHTML = "Solution";
         };
-        
+
         // on clicking or typing any non minus operator, check if adding that operator is allowed. if so, add it. if not, replace the previous character
         operatorClick = function (innerHTML) {
             if (problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) == " + " ||
-            problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) == " - " ||
-            problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) == " * " ||
-            problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) == " / " ||
-            problemArr.join("").split("").slice(-1) == "(" ||
-            problemArr.join("").split("").slice(-1) == ".") {
+                problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) == " - " ||
+                problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) == " * " ||
+                problemArr.join("").split(/(?<= \D )|(?= \D )/).slice(-1) == " / " ||
+                problemArr.join("").split("").slice(-1) == "(" ||
+                problemArr.join("").split("").slice(-1) == ".") {
                 problemArr = problemArr.slice(0, -1);
                 operatorClick(innerHTML);
             } else if (problemArr[0] === "" || !problemArr.length) {
@@ -227,14 +239,14 @@ require([
                 problem.scrollTop = problem.scrollHeight;
             };
         };
-        
+
         // check how many more left parentheses there are than right, and return the difference.
         checkParentheses = function () {
             var leftCounter = problemArr.join("").replace(/[^\(]/g, "").length;
             var rightCounter = problemArr.join("").replace(/[^\)]/g, "").length;
             return difference = leftCounter - rightCounter;
         };
-        
+
         // check if the last character in input is an operator
         checkIfOperator = function () {
             if (problemArr.slice(-1) == " + " ||
@@ -246,13 +258,13 @@ require([
                 return false;
             };
         };
-        
+
         // removes trailing parentheses, decimal points, and operators. if input is now empty, add placeholder text "Problem"
         evalCheck = function () {
             if (problemArr.join("").split("").slice(-1) == "(" ||
-            problemArr.join("").split("").slice(-1) == "." ||
-            problemArr.join("").split("").slice(-1) == ")" ||
-            problemArr.join("").split("").slice(-1) == " ") {
+                problemArr.join("").split("").slice(-1) == "." ||
+                problemArr.join("").split("").slice(-1) == ")" ||
+                problemArr.join("").split("").slice(-1) == " ") {
                 problemArr = problemArr.slice(0, -1);
                 evalCheck();
             };
@@ -263,58 +275,62 @@ require([
             }
         };
     }
-    // keydowns simulate clicking calculator buttons
+    
+    // keydowns simulate clicking calculator buttons only if calcApp is showing. 
     on(document, "keydown", function (event) {
-        switch (event.key) {
-            case "1":
-            case "2":
-            case "3":
-            case "4":
-            case "5":
-            case "6":
-            case "7":
-            case "8":
-            case "9":
-            case "0":
-                numClick(event.key);
-                break;
-            case "(":
-                leftParenthClick();
-                break;
-            case ")":
-                checkParentheses();
-                rightParenthClick();
-                break;
-            case "Backspace":
-                backspaceClick();
-                break;
-            case "c":
-                clearClick();
-                break;
-            case "+":
-                operatorClick("+");
-                break;
-            case "-":
-                minusClick();
-                break;
-            case "*":
-                operatorClick("*");
-                break;
-            case "/":
-                operatorClick("/");
-                break;
-            case "=":
-            case "Enter":
-                equalsClick();
-                break;
-            case ".":
-                decimalClick();
-                break;
-            case "Escape":
-                dojo.destroy(document.getElementById("calcOverlay"));
-                break;
-            default:
-                console.log(event.key + " is not a valid keypress")
+        if (calcIsActive) {
+            switch (event.key) {
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                case "0":
+                    numClick(event.key);
+                    break;
+                case "(":
+                    leftParenthClick();
+                    break;
+                case ")":
+                    checkParentheses();
+                    rightParenthClick();
+                    break;
+                case "Backspace":
+                    backspaceClick();
+                    break;
+                case "c":
+                    clearClick();
+                    break;
+                case "+":
+                    operatorClick("+");
+                    break;
+                case "-":
+                    minusClick();
+                    break;
+                case "*":
+                case "x":
+                    operatorClick("*");
+                    break;
+                case "/":
+                    operatorClick("/");
+                    break;
+                case "=":
+                case "Enter":
+                    equalsClick();
+                    break;
+                case ".":
+                    decimalClick();
+                    break;
+                case "Escape":
+                    calcOverlay.classList.remove("is-active");
+                    break;
+                default:
+                    console.log(event.key + " is not a valid keypress")
+            };
         };
     });
 });
