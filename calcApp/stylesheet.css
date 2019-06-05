@@ -1,7 +1,9 @@
 #calcApp {
     position: absolute;
     height: 430px;
+    max-height: 100vh;
     width: 273px;
+    max-width: 100vw;
     background-color: #c2d4e2;
     border-radius: 5px;
 }
