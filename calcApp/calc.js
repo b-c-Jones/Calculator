@@ -6,6 +6,19 @@ require([
 ], function (dom, domConstruct, on) {
 
     var calcIsActive = false;
+	// hoisting the calculator functions so they have global scope while declared.
+	var numClick;
+	var minusClick;
+	var decimalClick;
+	var equalsClick;
+	var leftParenthClick;
+	var rightParenthClick;
+	var backspaceClick;
+	var clearClick;
+	var operatorClick;
+	var checkParentheses;
+	var checkIfOperator;
+	var evalCheck;
 
     // Create a button. When clicked, a Calcite Modal is created that contains a calculator and calcIsActive is set to true. 
     //If the calcite Modal already exists, show it instead. 
@@ -275,6 +288,8 @@ require([
             }
         };
     }
+	
+	
     
     // keydowns simulate clicking calculator buttons only if calcApp is showing. 
     on(document, "keydown", function (event) {
